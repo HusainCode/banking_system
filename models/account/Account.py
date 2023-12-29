@@ -1,9 +1,12 @@
 from abc import ABC, abstractmethod
 from typing import Optional, Union
 
+from models.account.Checking import Checking
+from models.account.Savings import Savings
+
 
 class Account(ABC):
-    def __init__(self, account_number: str, customer_name: str, balance: float = 0) -> None:
+    def __init__(self, account_number: int, customer_name: str, balance: float = 0) -> None:
         self._balance = balance
         self._account_number = account_number
         self._customer_name = customer_name
@@ -81,6 +84,5 @@ class Account(ABC):
         self._balance -= amount
 
     def get_balance(self) -> float:
-            # Return the current balance of the account
-            return self._balance
-
+        # Return the current balance of the account
+        return self._balance
