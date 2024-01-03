@@ -1,18 +1,28 @@
-# from abc import ABC, abstractmethod
-# from typing import Optional, Union
-# import random
-#
+from abc import ABC, abstractmethod
+from typing import Optional, Union
+import random
+
 # from models.account.Checking import Checking
 # from models.account.Savings import Savings
+
+
+class Account(ABC):
+    def __init__(self,account_type, balance: float = 0) -> None:
+        self._balance = balance
+        self.account_type = account_type
+
+        @abstractmethod
+        def deposit(amount: float) -> None:
+            pass
+
+        @abstractmethod
+        def withdraw(amount: float) -> None:
+            pass
+
+
+
 #
-#
-# class Account(ABC):
-#     def __init__(self,account_type, balance: float = 0) -> None:
-#         self._balance = balance
-#         self.account_type = account_type
-#
-#
-#
+
 #     @staticmethod
 #     def create_account() -> Union['Checking', 'Savings', None]:
 #         """
