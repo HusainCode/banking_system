@@ -20,18 +20,22 @@ class GUI:
         self.setup_window()  # Call to set up the window properties and position
         self.create_ui_elements()  # Call to create the user interface components
 
-    def setup_window(self):
+    def setup_window(self, parent):
         self.create_window()  # Create the main window
         self.window_size()  # Set the size of the window
         self.window_position()  # Position the window on the screen
 
-    def create_ui_elements(self):
-        self.create_checkbox()  # Create checkboxes
-        self.create_button()  # Create a button
-        self.creat_canvas()  # Create a canvas
-        self.creat_label()  # Create labels for text display
+    def create_ui_elements(self, parent):
+        ui_frame = self.create_frame()
 
-    def create_window(self):
+        # List of UI element creation methods to be called
+        creation_methods = [self.create_checkbox, self.create_button, self.create_canvas, self.create_label]
+
+        # Loop and call each method with the ui_frame
+        for method in creation_methods:
+            method(ui_frame)
+
+    def create_window(self, parent):
         # Create the main window
         self.main_window = tk.Tk()
 
@@ -57,7 +61,7 @@ class GUI:
         # Set window position, the middle
         self.main_window.geometry(f"{self.window_width}x{self.window_height}+{center_x}+{center_y}")
 
-    def creat_canvas(self):
+    def create_canvas(self):
         """
         Create the UI elements of the application.
         initializing all the user interface components
@@ -69,7 +73,7 @@ class GUI:
         # Centering the canvas in the window
         canvas.place(relx=0.5, rely=0.5, anchor="center")
 
-    def create_checkbox(self):
+    def create_checkbox(self, parent):
         # Variables for checkboxes
         var_savings = tk.IntVar()
         var_checking = tk.IntVar()
@@ -85,21 +89,22 @@ class GUI:
         cb_checking = tk.Checkbutton(self.main_window, text="Checking", variable=var_checking)
         cb_checking.pack()
 
-    def create_button(self):
+    def create_button(self, parent):
         # Button to create account
         btn_create = tk.Button(self.main_window, text="Submit")
         btn_create.pack()
 
-    def creat_label(self):
+    def create_label(self, parent):
         label = tk.Label(self.main_window, text="Enter your full name")
         label.pack()
 
         entry = tk.Entry(self.main_window)
         entry.pack()
 
-    def creat_frame(self):
+    def create_frame(self):
         # Create a frame to hold the UI elements
         frame = tk.Frame(self.main_window)
+        frame.place(relx=0.5, rely=0.5, anchor="center")
         return frame
 
     # Run the window
