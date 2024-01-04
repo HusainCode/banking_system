@@ -1,0 +1,12 @@
+
+
+// Consdring an API as sroicre of fake usernames and passwerds
+
+{
+    "users": [
+        {"username": "user1", "password": "pass1"},
+        {"username": "user2", "password": "pass2"},
+        {"username": "user3", "password": "pass3"},
+        {"username": "user100", "password": "pass100"}
+    ]
+}
