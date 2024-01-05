@@ -10,4 +10,3 @@ class TestChecking(unittest.TestCase):
 
     def test_withdraw_insufficient_funds(self):
         pass
-

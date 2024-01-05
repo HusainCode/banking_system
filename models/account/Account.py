@@ -7,9 +7,10 @@ import random
 
 
 class Account(ABC):
-    def __init__(self,account_type, balance: float = 0) -> None:
+    def __init__(self,account_type,amount: float = 0, balance: float = 0) -> None:
         self._balance = balance
         self.account_type = account_type
+        self.amount = amount
 
         @abstractmethod
         def deposit(amount: float) -> None:
