@@ -4,9 +4,10 @@
 
 {
     "users": [
-        {"username": "user1", "password": "pass1"},
-        {"username": "user2", "password": "pass2"},
-        {"username": "user3", "password": "pass3"},
-        {"username": "user100", "password": "pass100"}
+        {"fullname": "user1", "password": "pass1", "account_type": "savings", "deposit": 1000},
+        {"fullname": "user2", "password": "pass2", "account_type": "checking", "deposit": 1500},
+        {"fullname": "user3", "password": "pass3", "account_type": "savings", "deposit": 1200},
+        {"fullname": "user100", "password": "pass100", "account_type": "checking", "deposit": 2000}
     ]
 }
+

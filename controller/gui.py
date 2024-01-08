@@ -1,4 +1,18 @@
 import tkinter as tk
+import json
+
+
+from banking_system.models.account.Checking import Checking
+
+"""
+1- need to learn grid
+
+ TODO add logo
+
+
+# icon = photoImage(file='')
+# window.iconphoto(True, icon)
+"""
 
 
 class GUI:
@@ -20,22 +34,12 @@ class GUI:
         self.setup_window()  # Call to set up the window properties and position
         self.create_ui_elements()  # Call to create the user interface components
 
-    def setup_window(self, parent):
+    def setup_window(self):
         self.create_window()  # Create the main window
         self.window_size()  # Set the size of the window
         self.window_position()  # Position the window on the screen
 
-    def create_ui_elements(self, parent):
-        ui_frame = self.create_frame()
-
-        # List of UI element creation methods to be called
-        creation_methods = [self.create_checkbox, self.create_button, self.create_canvas, self.create_label]
-
-        # Loop and call each method with the ui_frame
-        for method in creation_methods:
-            method(ui_frame)
-
-    def create_window(self, parent):
+    def create_window(self):
         # Create the main window
         self.main_window = tk.Tk()
 
@@ -68,44 +72,90 @@ class GUI:
 
         """
         # Creat a canvas widget
-        canvas = tk.Canvas(self.main_window, width=self.CANVAS_WIDTH, height=self.CANVAS_HEIGHT, bg='gray')
+        canvas = tk.Canvas(self.main_window,
+                           width=self.CANVAS_WIDTH,
+                           height=self.CANVAS_HEIGHT,
+                           bg='gray',
+                           relief=tk.RAISED,
+                           bd=10)
 
         # Centering the canvas in the window
-        canvas.place(relx=0.5, rely=0.5, anchor="center")
+        canvas.place(relx=0.5,
+                     rely=0.5,
+                     anchor="center")
 
-    def create_checkbox(self, parent):
+    def create_checkbox(self):
         # Variables for checkboxes
-        var_savings = tk.IntVar()
-        var_checking = tk.IntVar()
+        self.var_savings = tk.IntVar()
+        self.var_checking = tk.IntVar()
 
-        # Variables for checkboxes - used to track the state (checked/unchecked)
-        self.var_savings = tk.IntVar()  # Variable for the savings account checkbox
-        self.var_checking = tk.IntVar()  # Variable for the checking account checkbox
-
-        # Checkboxes for account type
-        cb_savings = tk.Checkbutton(self.main_window, text="Savings", variable=var_savings)
+        cb_savings = tk.Checkbutton(self.main_window,
+                                    text="Savings",
+                                    variable=self.var_savings)
         cb_savings.pack()
 
-        cb_checking = tk.Checkbutton(self.main_window, text="Checking", variable=var_checking)
+        cb_checking = tk.Checkbutton(self.main_window,
+                                     text="Checking",
+                                     variable=self.var_checking)
         cb_checking.pack()
 
-    def create_button(self, parent):
+    def handle_submit(self):
+        if self.var_checking.get():
+            pass
+
+        if self.var_savings.get():
+            pass
+
+     def submit_form(self):
+         pass
+
+
+    def add_user_to_jason(self, fullname, password, account_type, deposit):
+        user_date ={
+            "fullname": fullname,
+            "password": password,
+            "account_type": account_type,
+            "deposit": deposit
+        }
+
+        filename = "fake_users.json"
+
+        try:
+            with open(filename, "r") as file:
+                data = json.load(file)
+         except FileNotFoundError:
+                data = {"users": []}
+
+        # Add the new user
+        data["users"].append(user_data)
+
+         # Write the data back to the file
+         with open(filename, "w") as file:
+            json.dump(data, file, indent=4)
+
+
+
+
+    def create_button(self):
         # Button to create account
-        btn_create = tk.Button(self.main_window, text="Submit")
+        btn_create = tk.Button(self.main_window,
+                               text="Submit")
         btn_create.pack()
 
-    def create_label(self, parent):
-        label = tk.Label(self.main_window, text="Enter your full name")
+    def create_label(self):
+        label = tk.Label(self.main_window,
+                         text="Enter your full name")
         label.pack()
 
         entry = tk.Entry(self.main_window)
         entry.pack()
 
-    def create_frame(self):
-        # Create a frame to hold the UI elements
-        frame = tk.Frame(self.main_window)
-        frame.place(relx=0.5, rely=0.5, anchor="center")
-        return frame
+    def create_ui_elements(self):
+        # Directly call UI element creation methods
+        self.create_checkbox()
+        self.create_button()
+        self.create_canvas()
+        self.create_label()
 
     # Run the window
     def run(self):
