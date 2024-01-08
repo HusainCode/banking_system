@@ -5,13 +5,18 @@ import json
 from banking_system.models.account.Checking import Checking
 
 """
-1- need to learn grid
+THIS CLASS WILL BE BROKEN DOWN LATER TO A PARENT AND A FEW CHILDRENS 
+"""
+
+"""
+grid
 
  TODO add logo
 
-
+Find a logo
 # icon = photoImage(file='')
 # window.iconphoto(True, icon)
+
 """
 
 
