@@ -27,17 +27,21 @@ class GUI:
     and positions it at the center of the screen.
     """
 
-    # canvas dimensions
-    CANVAS_WIDTH = 300
-    CANVAS_HEIGHT = 300
+    # Window dimensions
+    WINDOW_WIDTH = 500
+    WINDOW_HEIGHT = 150
 
-    def __init__(self, window_width=500, window_height=500):
-        self.main_window = None  # Placeholder for the main Tkinter window object
-        self.window_height = window_height  # Store the height of the window
-        self.window_width = window_width  # Store the width of the window
+    def __init__(self, WINDOW_WIDTH=None):
+        self.window_height = GUI.WINDOW_HEIGHT  # Store the height of the window
+        self.window_width = GUI.WINDOW_WIDTH  # Store the width of the window
 
     # self._setup_window()  # Call to set up the window properties and position
     # self.create_ui_elements()  # Call to create the user interface components
+    def setup_window(self):
+        self.create_window()
+        self.window_size()
+        self.window_position()
+        self.main_window.title("")
 
     def create_window(self):
         # Create the main window
@@ -64,25 +68,6 @@ class GUI:
 
         # Set window position, the middle
         self.main_window.geometry(f"{self.window_width}x{self.window_height}+{center_x}+{center_y}")
-
-    # def create_canvas(self):
-    #     """
-    #     Create the UI elements of the application.
-    #     initializing all the user interface components
-    #
-    #     """
-    #     # Creat a canvas widget
-    #     canvas = tk.Canvas(self.main_window,
-    #                        width=self.CANVAS_WIDTH,
-    #                        height=self.CANVAS_HEIGHT,
-    #                        bg='gray',
-    #                        relief=tk.RAISED,
-    #                        bd=10)
-    #
-    #     # Centering the canvas in the window
-    #     canvas.place(relx=0.5,
-    #                  rely=0.5,
-    #                  anchor="center")
 
     # Run the window
     def run(self):

@@ -11,23 +11,19 @@ from banking_system.controller.gui import GUI
 
 
 class AccountCreation(GUI):
-    def __init__(self, window_width=500, window_height=150):
-        super().__init__(window_width, window_height)
+    def __init__(self):
+        super().__init__()
+        self.setup_window() # Call the setup_window method from GUI
+        self.main_window.title("Account Creation")  # Set a specific title for AccountCreation
 
-        self.setup_window()
+        self.create_ui_elements()
 
+    def create_ui_elements(self):
         self.create_frames()
         self.create_labels()
         self.create_entries()
         self.create_checkbox()
         self.create_submit_button()
-
-    def setup_window(self):
-        super().create_window()  # Call the GUI's create_window
-        super().window_size()
-        super().window_position()
-
-        self.main_window.title("Account Creation")  # Customize the title
 
     def create_frames(self):
         self.frame_fullname = tk.Frame(self.main_window)
@@ -68,6 +64,7 @@ class AccountCreation(GUI):
                                     text="Savings",
                                     variable=self.var_savings,
                                     command=lambda: self.var_checking.set(0))
+
         cb_savings.pack(side=tk.LEFT, padx=5, pady=5)
 
         # Checkbutton for Checking account
@@ -75,6 +72,7 @@ class AccountCreation(GUI):
                                      text="Checking",
                                      variable=self.var_checking,
                                      command=lambda: self.var_savings.set(0))
+
         cb_checking.pack(side=tk.RIGHT, padx=5, pady=5)
 
         # Store the checking or savings value
@@ -91,26 +89,26 @@ class AccountCreation(GUI):
                                width=20)
         btn_create.pack()
 
-        def handle_submission(self):
-
+        def validate_checkboxes_inputs(self):
             # Check if the 'Savings' checkbox is selected
-            if self.var_savings.get == 1:
+            if self.var_savings.get() == 1:
                 account_type = "Savings"
-
             # Check if the 'Checking' checkbox is selected
             elif self.var_checking.get() == 1:
                 account_type = "Checking"
-
+            #  if nothing is selected
             else:
-                raise ValueError("You must select an account type!")
+                raise ValueError("You must select an account type")
 
-                # Validate full name and password
+        def validate_entry_inputs(self):
+            # Validate the user input
             if not self.entry_fullname.get().strip():
                 raise ValueError("You must enter a fullname")
-
             if not self.entry_password.get().strip():
                 raise ValueError("You must enter a password")
 
+        def handle_submission(self):
+            pass
 
     # def add_user_to_jason(self, fullname, password, account_type):
     #     new_user = {
