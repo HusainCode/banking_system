@@ -1,15 +1,15 @@
+import json
 import tkinter as tk
+from abc import ABC, abstractmethod
 
 from banking_system.models.account.Checking import Checking
 
 """
-THIS CLASS WILL BE BROKEN DOWN LATER TO A PARENT AND A FEW CHILDRENS 
-"""
 
-"""
+
 
 TODO
-1- REFACTOR BEFORE FINALIZING
+1- REFACTOR BEFORE FINALIZING, PENDING.
 
  TODO add logo
 
@@ -20,7 +20,7 @@ Find a logo
 """
 
 
-class GUI:
+class GUI(ABC):
     """
     GUI class for creating and managing a Tkinter window.
     It sets up a window with specified dimensions, makes it resizable,
@@ -68,6 +68,20 @@ class GUI:
 
         # Set window position, the middle
         self.main_window.geometry(f"{self.window_width}x{self.window_height}+{center_x}+{center_y}")
+
+    def read_json_file(self):
+        PATH = r"C:\Users\bsk14\OneDrive\Documents\SWAT\PYTHON\Banking System\banking_system\data\fake_users.json"
+        with open(PATH, "r") as file:
+            data = json.load(file)
+            return data
+
+    @abstractmethod
+    def create_entries(self):
+        pass
+
+    @abstractmethod
+    def create_labels(self):
+        pass
 
     # Run the window
     def run(self):

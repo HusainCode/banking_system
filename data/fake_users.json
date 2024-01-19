@@ -3,7 +3,7 @@
 
 {
     "users": [
-        {"fullname": "Hsuain ", "password": "pass1", "account_type": "savings", "deposit": 1000},
+        {"fullname": "Husain ", "password": "pass1", "account_type": "savings", "deposit": 1000},
         {"fullname": "user2", "password": "pass2", "account_type": "checking", "deposit": 1500},
         {"fullname": "user3", "password": "pass3", "account_type": "savings", "deposit": 1200},
         {"fullname": "user100", "password": "pass100", "account_type": "checking", "deposit": 2000}
