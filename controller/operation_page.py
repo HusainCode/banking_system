@@ -1,3 +1,4 @@
+import json
 from abc import ABC
 
 from banking_system.controller.gui import GUI
@@ -16,8 +17,17 @@ class Operation(GUI, ABC):
     def withdrawal(self):
         pass
 
-    def deposit(self):
-        pass
+    def deposit(self, fullname, amount):
+        # Find the user
+        user, data = self.find_user(fullname)
+
+        if user:
+            # Update the user's deposit amount
+            user['deposit'] += amount
+
+            # Write the updated data back to the JSON file
+            with open('banking_system/data/fake_users.json', 'w') as file:
+                json.dump(data, file, indent=4)
 
     # def get_customer_name_numer(self):
 

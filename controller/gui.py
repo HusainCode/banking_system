@@ -69,6 +69,15 @@ class GUI(ABC):
         # Set window position, the middle
         self.main_window.geometry(f"{self.window_width}x{self.window_height}+{center_x}+{center_y}")
 
+    def find_user(self, filename, fullname):
+        # Read the data from the JSON file
+        data = self.read_json_file(fullname)
+
+        # Find the user
+        for user in data['users']:
+            if user['fullname'] == fullname:
+                return user, data
+
     def read_json_file(self):
         PATH = r"C:\Users\bsk14\OneDrive\Documents\SWAT\PYTHON\Banking System\banking_system\data\fake_users.json"
         with open(PATH, "r") as file:
