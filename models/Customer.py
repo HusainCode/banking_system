@@ -8,14 +8,26 @@ class Customer:
     """
 
     used_id = set()
-    id_range_start = 100000
-    id_range_end = 999999
+    ID_RANGE_START = 1000000  # Start of 7-digit numbers
+    ID_RANGE_END = 9999999  # End of 7-digit numbers
 
     def generate_unique_id(self):
-        while True:
-            new_id = random.randint(self.id_range_start, self.id_range_end)
-            if new_id not in self.used_id:
-                self.used_id.add(new_id)
+        data = self.read_json_file()
+
+        attempt = 0
+        max_attempt = 10  # To avoid infinite loop
+
+        while attempt < max_attempt:
+            new_id = random.randint(self.ID_RANGE_START, self.ID_RANGE_END)
+            attempt += 1
+
+            if new_id not in data["id"]:
+                data["id"].append(new_id)
+
+                with open("fake_users.json", "w") as file:
+                    json.dump(data, file, indent=4)
+                    print("New id added to the file")
+
                 return new_id
 
     def get_customer_unique_id(self):
@@ -23,7 +35,6 @@ class Customer:
 
     def set_customer_name(self):
         self.customer_fullname = input("Enter your full name: ")
-
 
     @staticmethod
     def get_customer_name():
@@ -33,5 +44,5 @@ class Customer:
             return data["users"][0]["fullname"]
 
 
-
-
+cus = Customer()
+cus.generate_unique_id()

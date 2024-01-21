@@ -10,9 +10,14 @@ class Operation(GUI, ABC):
     def __init__(self):
         super().__init__()
         self.setup_window()
-        self.display_customer_name()
+        # self.display_customer_name()
 
         self.main_window.title("Operation")
+
+    def create_frames(self):
+        self.frame_fullname = tk.Frame(self.main_window)
+        self.frame_fullname.pack(padx=5, pady=2)
+
 
     def withdrawal(self):
         pass
@@ -31,8 +36,6 @@ class Operation(GUI, ABC):
 
     # def get_customer_name_numer(self):
 
-    def display_customer_name(self):
-        print(Customer.get_customer_name())
 
     def display_customer_number(self):
         pass
@@ -42,16 +45,20 @@ class Operation(GUI, ABC):
 
     def create_labels(self):
         # Call the read_json_file method and pass the path to the JSON file
-        data = self.read_json_file('banking_system/data/fake_users.json')
+        data = self.read_json_file()
 
         # Extract the fullname of the first user
         fullname = data['users'][0]['fullname']
 
         # Create a label and set its text to the fullname
-        label_fullname = tk.Label(self.main_window, text=fullname)
+        label_fullname = tk.Label(self.frame_fullname, text=fullname)
 
-        # Pack the label to display it on the GUI
-        label_fullname.pack()
+        # Grid the label to display it on the GUI
+        label_fullname.grid(row=0, column=0, padx=5, pady=2, sticky='w')
+
+    def display_customer_name(self):
+         pass
+
 
     def create_entries(self):
         pass
@@ -59,4 +66,6 @@ class Operation(GUI, ABC):
 
 
 app = Operation()
+app.create_frames()
+app.create_labels()
 app.main_window.mainloop()

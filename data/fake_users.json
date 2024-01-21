@@ -3,10 +3,10 @@
 
 {
     "users": [
-        {"fullname": "Husain ", "password": "pass1", "account_type": "savings", "deposit": 1000},
-        {"fullname": "user2", "password": "pass2", "account_type": "checking", "deposit": 1500},
-        {"fullname": "user3", "password": "pass3", "account_type": "savings", "deposit": 1200},
-        {"fullname": "user100", "password": "pass100", "account_type": "checking", "deposit": 2000}
+        {"fullname": "Husain Alshaikhahmed", "password": "pass1", "id": "7362516","account_type": "savings", "balance": 1000},
+          {"fullname": "Sanji V Smoke", "password": "pass1", "id": "2333516","account_type": "savings", "balance": 2000},
+          {"fullname": "Ronro Zoro", "password": "pass1", "id": "1362516","account_type": "savings", "balance": 1220},
+         {"fullname": "Luffy D Monkey", "password": "pass1", "id": "9362216","account_type": "savings", "balance": 111100}
     ]
 }
 

@@ -27,3 +27,12 @@ class TestChecking(unittest.TestCase):
 
     def test_withdraw_insufficient_funds(self):
         pass
+
+# class TestCustomer(unittest.TestCase):
+#     def test_generate_unique_id(self):
+#         customer = Customer()
+#         try:
+#             id = customer.generate_unique_id()
+#             self.assertTrue(10000 <= id <= 99999)  # Check if id is a 5-digit number
+#         except Exception as e:
+#             self.fail(f"Test failed due to exception: {str(e)}")
