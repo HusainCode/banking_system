@@ -1,5 +1,7 @@
 import json
 import random
+from banking_system.controller.json_data_manager\
+    import JsonDataManager, path_to_file
 
 
 class Customer:
@@ -7,12 +9,15 @@ class Customer:
         Initialize a new Customer with the given details.
     """
 
-    used_id = set()
     ID_RANGE_START = 1000000  # Start of 7-digit numbers
     ID_RANGE_END = 9999999  # End of 7-digit numbers
 
+    def __init__(self):
+        self.data_manager = JsonDataManager(path_to_file)
+
+
+    # Come back to this later,see if you can make it more efficient
     def generate_unique_id(self):
-        data = self.read_json_file()
 
         attempt = 0
         max_attempt = 10  # To avoid infinite loop
@@ -21,12 +26,7 @@ class Customer:
             new_id = random.randint(self.ID_RANGE_START, self.ID_RANGE_END)
             attempt += 1
 
-            if new_id not in data["id"]:
-                data["id"].append(new_id)
-
-                with open("fake_users.json", "w") as file:
-                    json.dump(data, file, indent=4)
-                    print("New id added to the file")
+         # CONTINUE FROM HERE
 
                 return new_id
 
