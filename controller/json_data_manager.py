@@ -42,11 +42,17 @@ class JsonDataManager:
             return None
 
     def find_user_by_attribute(self, attribute, value):
-        users = self.read_json_file()
-        if users is None:
+        data = self.read_json_file()
+        if data is None:
             return None
+
+        users = data.get('users', [])
         # 'next' is used to get the first match; if no match is found, it returns None
         return next((user for user in users if user.get(attribute) == value), None)
+
+    def is_user_id_present(self, id):
+        # Return True if the user id is present in the database
+        return self.find_user_by_attribute('id', id) is not None
 
     def find_user_by_fullname(self, filename, fullname):
         return self.find_user_by_attribute('fullname', fullname)

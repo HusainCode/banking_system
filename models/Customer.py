@@ -1,6 +1,6 @@
 import json
 import random
-from banking_system.controller.json_data_manager\
+from banking_system.controller.json_data_manager \
     import JsonDataManager, path_to_file
 
 
@@ -13,36 +13,34 @@ class Customer:
     ID_RANGE_END = 9999999  # End of 7-digit numbers
 
     def __init__(self):
-        self.data_manager = JsonDataManager(path_to_file)
-
+        self.data_manager = JsonDataManager()
+        self.new_id = self.generate_unique_id()
 
     # Come back to this later,see if you can make it more efficient
     def generate_unique_id(self):
-
-        attempt = 0
         max_attempt = 10  # To avoid infinite loop
 
-        while attempt < max_attempt:
+        for _ in range(max_attempt):
             new_id = random.randint(self.ID_RANGE_START, self.ID_RANGE_END)
-            attempt += 1
 
-         # CONTINUE FROM HERE
-
+            if not self.data_manager.is_user_id_present(new_id):
                 return new_id
+            else:
+
+                return "User already exists"
+
+        raise ValueError("Unable to generate a unique ID")
 
     def get_customer_unique_id(self):
-        print("Number", self.new_id)
+        print("Number",self.new_id)
 
     def set_customer_name(self):
         self.customer_fullname = input("Enter your full name: ")
 
-    @staticmethod
-    def get_customer_name():
-        PATH = r"C:\Users\bsk14\OneDrive\Documents\SWAT\PYTHON\Banking System\banking_system\data\fake_users.json"
-        with open(PATH, "r") as file:
-            data = json.load(file)
-            return data["users"][0]["fullname"]
+    def get_customer_name(self):
+        pass
 
 
 cus = Customer()
-cus.generate_unique_id()
+cus.get_customer_unique_id()
+
