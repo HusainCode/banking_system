@@ -35,7 +35,6 @@ class Operation(GUI, ABC):
             with open('banking_system/data/fake_users.json', 'w') as file:
                 json.dump(data, file, indent=4)
 
-    # def get_customer_name_numer(self):
 
     def display_customer_number(self):
         pass
@@ -47,6 +46,7 @@ class Operation(GUI, ABC):
         # Call the read_json_file method and pass the path to the JSON file
         data = self.data_manager.read_json_file()
 
+        # COME TO THIS LATER
         # Extract the fullname of the first user
         fullname = data['users'][0]['fullname']
         customer_id = data['users'][0]['id']
@@ -57,16 +57,36 @@ class Operation(GUI, ABC):
 
         # Grid the label to display it on the GUI
         label_fullname.grid(row=0, column=0, padx=5, pady=2, sticky='w')
-        label_customer_id.grid(row=1, column=0, padx=(40,5), pady=2, sticky='w')
+        label_customer_id.grid(row=1, column=0, padx=(40, 5), pady=2, sticky='w')
 
     def display_customer_name(self):
         pass
 
+
     def create_entries(self):
         pass
+
+    def create_deposit_button(self):
+        # COME BACK TO THIS LATER TO ADD COMMAND
+        deposit_button = tk.Button(self.main_window,
+                                   text="Deposit",
+                                   width=8)
+
+        # despot_button.pack(padx=5, pady=5)
+        deposit_button.pack()
+
+    def create_withdrawal_button(self):
+        # COME BACK TO THIS LATER TO ADD COMMAND
+        withdrawal_button = tk.Button(self.main_window,
+                                   text="withdrawal",
+                                   width=8)
+
+        withdrawal_button.pack()
 
 
 app = Operation()
 app.create_frames()
 app.create_labels()
+app.create_deposit_button()
+app.create_withdrawal_button()
 app.main_window.mainloop()

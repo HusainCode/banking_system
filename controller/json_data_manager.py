@@ -83,4 +83,30 @@ class JsonDataManager:
             # Return False to indicate that the data writing was unsuccessful
             return False
 
+
+ # def add_user_to_jason(self, fullname, password, account_type):
+    #     new_user = {
+    #         "fullname": fullname,
+    #         "password": password,
+    #         "account_type": account_type,
+    #     }
+    #
+    #     try:
+    #         with open("fake_users.json", "r") as file:
+    #             data = json.load(file)
+    #     except FileNotFoundError:  # If the file is not found
+    #         data = {"users": []}
+    #
+    #     # Checking if the user already exist
+    #     for customer in data["users"]:
+    #         if customer["fullname"] == fullname:
+    #             return "Customer already exist"
+    #
+    #     # Add the new customer
+    #     data["users"].append(new_user)
+    #
+    #     # Write the data back to the file
+    #     with open("fake_users.json", "w") as file:
+    #         json.dump(data, file, indent=4)
+
 # json_data_manager = JsonDataManager(path_to_file)

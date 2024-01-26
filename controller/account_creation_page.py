@@ -4,16 +4,13 @@ TODO
 """
 
 import tkinter as tk
-from abc import ABC, abstractmethod
-import json
-
 from banking_system.controller.gui import GUI
 
 
 class AccountCreation(GUI):
     def __init__(self):
         super().__init__()
-        self.setup_window() # Call the setup_window method from GUI
+        self.setup_window()  # Call the setup_window method from GUI
         self.main_window.title("Account Creation")  # Set a specific title for AccountCreation
 
         self.create_ui_elements()
@@ -25,6 +22,7 @@ class AccountCreation(GUI):
         self.create_checkbox()
         self.create_submit_button()
 
+    # REFACTOR THIS(DRY)
     def create_frames(self):
         self.frame_fullname = tk.Frame(self.main_window)
         self.frame_fullname.pack(padx=5, pady=2)
@@ -84,10 +82,11 @@ class AccountCreation(GUI):
         TODO this button should submit the data to the json file
         '''
         # Button to create account
-        btn_create = tk.Button(self.main_window,
-                               text="Submit",
-                               width=20)
-        btn_create.pack()
+        # COME BACK TO THIS LATER TO ADD COMMAND
+        submit_button = tk.Button(self.main_window,
+                                  text="Submit",
+                                  width=20)
+        submit_button.pack()
 
         def validate_checkboxes_inputs(self):
             # Check if the 'Savings' checkbox is selected
@@ -109,31 +108,6 @@ class AccountCreation(GUI):
 
         def handle_submission(self):
             pass
-
-    # def add_user_to_jason(self, fullname, password, account_type):
-    #     new_user = {
-    #         "fullname": fullname,
-    #         "password": password,
-    #         "account_type": account_type,
-    #     }
-    #
-    #     try:
-    #         with open("fake_users.json", "r") as file:
-    #             data = json.load(file)
-    #     except FileNotFoundError:  # If the file is not found
-    #         data = {"users": []}
-    #
-    #     # Checking if the user already exist
-    #     for customer in data["users"]:
-    #         if customer["fullname"] == fullname:
-    #             return "Customer already exist"
-    #
-    #     # Add the new customer
-    #     data["users"].append(new_user)
-    #
-    #     # Write the data back to the file
-    #     with open("fake_users.json", "w") as file:
-    #         json.dump(data, file, indent=4)
 
 
 app1 = AccountCreation()
