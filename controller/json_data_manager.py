@@ -11,6 +11,7 @@
 import json
 import functools
 from pathlib import Path
+from banking_system.models import Customer
 
 path_to_file = r"C:\Users\bsk14\OneDrive\Documents" \
                r"\SWAT\PYTHON\Banking System\banking_system\data\fake_users.json"
@@ -50,9 +51,10 @@ class JsonDataManager:
         # 'next' is used to get the first match; if no match is found, it returns None
         return next((user for user in users if user.get(attribute) == value), None)
 
-    def is_user_id_present(self, id):
-        # Return True if the user id is present in the database
-        return self.find_user_by_attribute('id', id) is not None
+    # Check if the user id is in the json file
+    def is_user_id_present(self, user_id):
+        # Return "User exists" if the user id is in the database, otherwise return False
+        return "User exists" if self.find_user_by_attribute('id', user_id) is not None else False
 
     def find_user_by_fullname(self, filename, fullname):
         return self.find_user_by_attribute('fullname', fullname)
@@ -84,29 +86,41 @@ class JsonDataManager:
             return False
 
 
- # def add_user_to_jason(self, fullname, password, account_type):
-    #     new_user = {
-    #         "fullname": fullname,
-    #         "password": password,
-    #         "account_type": account_type,
-    #     }
-    #
-    #     try:
-    #         with open("fake_users.json", "r") as file:
-    #             data = json.load(file)
-    #     except FileNotFoundError:  # If the file is not found
-    #         data = {"users": []}
-    #
-    #     # Checking if the user already exist
-    #     for customer in data["users"]:
-    #         if customer["fullname"] == fullname:
-    #             return "Customer already exist"
-    #
-    #     # Add the new customer
-    #     data["users"].append(new_user)
-    #
-    #     # Write the data back to the file
-    #     with open("fake_users.json", "w") as file:
-    #         json.dump(data, file, indent=4)
+
+
+    #  CONTINUE FROM HERE
+
+    def add_user_by_fullname(self, user):
+        if self.find_user_by_id() is False:
+            # Read the JSON file
+            data = self.read_json_file()
+            new_id = Customer.generate_unique_id()
+
+            data['id'].append(new_id)
+            data['fullname'].append(user)
+
+        return self.write_json_file(data)
+
+    def add_deposit(self, user_id, deposit_amount):
+        if self.find_user_by_id(user_id) is False:
+            # Read the JSON file
+            data = self.read_json_file()
+
+            for user in data['users']:
+                if user['id'] == user_id:
+                    user['balance'] += deposit_amount
+
+        return self.write_json_file(data)
+
+    def process_withdrawal(self, user_id, withdrawal_amount):
+        if self.find_user_by_id(user_id) is False:
+            # Read the JSON file
+            data = self.read_json_file()
+
+            for user in data['users']:
+                if user['id'] == user_id:
+                    user['balance'] -= withdrawal_amount
+
+        return self.write_json_file(data)
 
 # json_data_manager = JsonDataManager(path_to_file)

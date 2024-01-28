@@ -63,6 +63,8 @@ class Operation(GUI, ABC):
         pass
 
 
+
+
     def create_entries(self):
         pass
 

@@ -69,7 +69,9 @@ class GUI(ABC):
         # Set window position, the middle
         self.main_window.geometry(f"{self.window_width}x{self.window_height}+{center_x}+{center_y}")
 
-
+    @abstractmethod
+    def create_frames(self):
+        pass
 
     @abstractmethod
     def create_entries(self):
