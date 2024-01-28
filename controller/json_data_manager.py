@@ -20,6 +20,7 @@ path_to_file = r"C:\Users\bsk14\OneDrive\Documents" \
 class JsonDataManager:
     def __init__(self):
         self.path = Path(path_to_file)
+        self.customer = Customer()
 
     def read_json_file(self):
         try:
@@ -85,18 +86,13 @@ class JsonDataManager:
             # Return False to indicate that the data writing was unsuccessful
             return False
 
-
-
-
     #  CONTINUE FROM HERE
 
     def add_user_by_fullname(self, user):
-        if self.find_user_by_id() is False:
+        if self.find_user_by_id(id) is False:
             # Read the JSON file
             data = self.read_json_file()
-            new_id = Customer.generate_unique_id()
 
-            data['id'].append(new_id)
             data['fullname'].append(user)
 
         return self.write_json_file(data)
