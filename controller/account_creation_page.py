@@ -91,5 +91,3 @@ def on_submit(self):
         messagebox.showwarning("User already exists")
 
 
-app1 = AccountCreation()
-app1.run()

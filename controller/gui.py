@@ -69,19 +69,19 @@ class GUI(ABC):
         # Set window position, the middle
         self.main_window.geometry(f"{self.window_width}x{self.window_height}+{center_x}+{center_y}")
 
-    @abstractmethod
+    # @abstractmethod
     def create_frames(self):
         pass
 
-    @abstractmethod
+    # @abstractmethod
     def create_entries(self):
         pass
 
-    @abstractmethod
+    #
+    # @abstractmethod
     def create_labels(self):
         pass
 
     # Run the window
     def run(self):
         self.main_window.mainloop()
-

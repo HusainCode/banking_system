@@ -11,7 +11,6 @@
 import json
 import functools
 from pathlib import Path
-from banking_system.models import Customer
 
 path_to_file = r"C:\Users\bsk14\OneDrive\Documents" \
                r"\SWAT\PYTHON\Banking System\banking_system\data\fake_users.json"
@@ -20,7 +19,6 @@ path_to_file = r"C:\Users\bsk14\OneDrive\Documents" \
 class JsonDataManager:
     def __init__(self):
         self.path = Path(path_to_file)
-        self.customer = Customer()
 
     def read_json_file(self):
         try:
@@ -86,7 +84,7 @@ class JsonDataManager:
             # Return False to indicate that the data writing was unsuccessful
             return False
 
-    #  CONTINUE FROM HERE
+
 
     def add_user_by_fullname(self, user):
         if self.find_user_by_id(id) is False:

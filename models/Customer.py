@@ -41,11 +41,11 @@ class Customer:
     def create_labels(self):
         # Label for Full Name
         label_fullname = tk.Label(self.frame_fullname, text="Full Name")
-        label_fullname.grid(row=0, column=0, padx=5, pady=2, sticky='w')  # Reduced pady here as well
+        label_fullname.grid(row=0, column=0, padx=5, pady=2, sticky='w')
 
         # Label for Password
         label_password = tk.Label(self.frame_password, text="Password")
-        label_password.grid(row=0, column=0, padx=5, pady=2, sticky='w')  # Reduced pady here as well
+        label_password.grid(row=0, column=0, padx=5, pady=2, sticky='w')
 
     def create_entries(self):
         # Entry for Full Name
