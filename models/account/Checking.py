@@ -1,6 +1,5 @@
-from banking_system.controller import json_data_manager
+from banking_system.data import json_data_manager
 from banking_system.models.account.Account import Account
-import json
 
 
 class Checking(Account):

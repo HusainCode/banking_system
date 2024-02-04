@@ -1,9 +1,8 @@
 import json
 from abc import ABC
-from banking_system.controller.json_data_manager import JsonDataManager
+from banking_system.data.json_data_manager import JsonDataManager
 
 from banking_system.controller.gui import GUI
-from banking_system.models.Customer import Customer
 import tkinter as tk
 
 

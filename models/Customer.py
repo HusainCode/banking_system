@@ -1,8 +1,7 @@
-import json
 import random
 import tkinter as tk
-from banking_system.controller.json_data_manager \
-    import JsonDataManager, path_to_file
+from banking_system.data.json_data_manager \
+    import JsonDataManager
 
 
 class Customer:
