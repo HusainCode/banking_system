@@ -85,3 +85,31 @@ class GUI(ABC):
     # Run the window
     def run(self):
         self.main_window.mainloop()
+
+
+
+# def create_frames(self):
+#     self.frame_fullname = tk.Frame(self.main_window)
+#     self.frame_fullname.pack(padx=5, pady=2)
+#
+#     self.frame_password = tk.Frame(self.main_window)
+#     self.frame_password.pack(padx=5, pady=2)
+#
+# def create_labels(self):
+#     # Label for Full Name
+#     label_fullname = tk.Label(self.frame_fullname, text="Full Name")
+#     label_fullname.grid(row=0, column=0, padx=5, pady=2, sticky='w')
+#
+#     # Label for Password
+#     label_password = tk.Label(self.frame_password, text="Password")
+#     label_password.grid(row=0, column=0, padx=5, pady=2, sticky='w')
+
+# def create_entries(self):
+#     # Entry for Full Name
+#     self.entry_fullname = tk.Entry(self.frame_fullname)
+#     self.entry_fullname.grid(row=0, column=1, padx=5, pady=2, sticky='e', ipadx=20)
+#
+#     # Entry for Password
+#     self.entry_password = tk.Entry(self.frame_password, show="*")
+#     self.entry_password.grid(row=0, column=1, padx=5, pady=2, sticky='e', ipadx=20)
+

@@ -3,10 +3,10 @@
 
 {
     "users": [
-        {"fullname": "Husain Alshaikhahmed", "password": "pass1", "id": "7362516","account_type": "savings", "balance": 1000},
-          {"fullname": "Sanji V Smoke", "password": "pass1", "id": "2333516","account_type": "savings", "balance": 2000},
-          {"fullname": "Ronro Zoro", "password": "pass1", "id": "1362516","account_type": "savings", "balance": 1220},
-         {"fullname": "Luffy D Monkey", "password": "pass1", "id": "9362216","account_type": "savings", "balance": 111100}
+        {"fullname": "Husain Alshaikhahmed", "password": "pass1", "id": "7362516", "balance": 1000},
+          {"fullname": "Sanji V Smoke", "password": "pass1", "id": "2333516", "balance": 2000},
+          {"fullname": "Ronro Zoro", "password": "pass1", "id": "1362516", "balance": 1220},
+         {"fullname": "Luffy D Monkey", "password": "pass1", "id": "9362216", "balance": 111100}
     ]
 }
 
