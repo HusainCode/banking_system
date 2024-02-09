@@ -3,7 +3,7 @@ from tkinter import messagebox
 
 from banking_system.controller.account_creation_page import AccountCreation
 from banking_system.controller.gui import GUI
-from banking_system.models.Customer import Customer
+from banking_system.controller.operation_page import Operation
 from banking_system.data.json_data_manager import JsonDataManager
 
 """
@@ -15,6 +15,8 @@ class LoginRegistrar(GUI):
     def __init__(self):
         super().__init__()
         self.setup_window()  # Call the setup_window method from GUI
+        self.LoginRegistrar_ui_elements()
+
         self.data_manger = JsonDataManager()
         self.main_window.title("Login/Register")
 
@@ -27,6 +29,15 @@ class LoginRegistrar(GUI):
         'n': Aligns the widget to the top side of the cell (north).
         's': Aligns the widget to the bottom side of the cell (south).
         """
+
+
+
+    def LoginRegistrar_ui_elements(self):
+        self.create_frames()
+        self.create_labels()
+        self.create_entries()
+        self.create_login_button()
+        self.create_register_button()
 
     ############################### CLEAN THIS FUCKERY ##################################
     def create_frames(self):
@@ -65,9 +76,13 @@ class LoginRegistrar(GUI):
         self.entry_password = tk.Entry(self.frame_password, show="*")
         self.entry_password.grid(row=0, column=1, padx=5, pady=2, sticky='e', ipadx=20)
 
-
     def navigate_to_operation(self):
-        pass
+        # Destroy all widgets
+        for widget in self.main_window.winfo_children():
+            widget.destroy()
+
+        # Create an instance of the OperationPage
+        operation_page = Operation()
 
     def create_login_button(self):
         # ADD COMMAND LATER
@@ -101,26 +116,19 @@ class LoginRegistrar(GUI):
         # Pack the register button at the bottom
         self.register_button.pack(side='bottom', padx=5, pady=5)
 
+    # I stopped here
     def navigate_to_account_creation(self):
         # Destroy all widgets
         for widget in self.main_window.winfo_children():
             widget.destroy()
 
         # Create an instance of the AccountCreationPage
-        account_creation_page = AccountCreation(self.main_window)
-        account_creation_page.create_frames()
+        account_creation_page = AccountCreation()
 
-
-
-
-
+        # Pyhon have garbage collector, however, it is a good practice to delete the object
+        del account_creation_page  # Delete the customer object
 
 
 
 LR = LoginRegistrar()
-LR.create_frames()
-LR.create_labels()
-LR.create_entries()
-LR.create_login_button()
-LR.create_register_button()
 LR.run()

@@ -86,8 +86,4 @@ class Operation(GUI, ABC):
 
 
 app = Operation()
-app.create_frames()
-app.create_labels()
-app.create_deposit_button()
-app.create_withdrawal_button()
 app.main_window.mainloop()
