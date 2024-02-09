@@ -19,9 +19,46 @@ class AccountCreation(GUI):
 
     def create_ui_elements(self):
         self.create_frames()
-        self.create_labels()
-        self.create_entries()
+        self.create_labels_and_entries()
         self.create_submit_button()
+
+    def create_frames(self):
+        # Use an outer frame to hold all content and center it
+        self.center_frame = tk.Frame(self.main_window)
+        self.center_frame.pack(expand=True)
+
+        # Frame for the fullname field
+        self.frame_fullname = tk.Frame(self.center_frame)
+        self.frame_fullname.pack(padx=5, pady=(0, 5), fill='x')
+
+        # Frame for the password field
+        self.frame_password = tk.Frame(self.center_frame)
+        self.frame_password.pack(padx=5, pady=(0, 5), fill='x')
+
+        # Frame for the button
+        self.frame_button = tk.Frame(self.center_frame)
+        self.frame_button.pack(padx=5, pady=(0, 5), fill='x')
+
+    def create_labels_and_entries(self):
+        # Combine label and entry creation to minimize redundancy
+        self.entry_fullname = tk.Entry(self.frame_fullname)
+        label_fullname = tk.Label(self.frame_fullname, text="Full Name", width=20)
+        label_fullname.grid(row=0, column=0)
+        self.entry_fullname.grid(row=0, column=1)
+
+        self.entry_password = tk.Entry(self.frame_password, show="*")
+        label_password =  tk.Label(self.form_frame, text="Password:", width=20, anchor="e").grid(row=1, column=0, padx=5, pady=5)
+        label_password.grid(row=0, column=0)
+        self.entry_password.grid(row=1, column=1, padx=5, pady=5, sticky="ew")
+
+
+
+        # Label for Password
+
+        self.entry_password = tk.Entry(self.form_frame, show="*")
+        self.entry_password.grid(row=1, column=1, padx=5, pady=5, sticky="ew")
+
+
 
     def on_submit(self):
         # Retrieve values from the entries
@@ -49,7 +86,7 @@ class AccountCreation(GUI):
         '''
         # Button to create account
         # COME BACK TO THIS LATER TO ADD COMMAND
-        submit_button = tk.Button(self.main_window,
+        submit_button = tk.Button(self.frame_button,
                                   text="Submit",
                                   command=self.on_submit,
                                   width=20)
