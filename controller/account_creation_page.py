@@ -1,12 +1,14 @@
 """
-
+TODO LIST:
 1- REFACTOR BEFORE FINALIZING
+2- reorganize the widgets
+3- add json functionality
+
 """
 
 import tkinter as tk
 from tkinter import messagebox
 from banking_system.controller.gui import GUI
-from banking_system.models.Customer import Customer
 
 
 class AccountCreation(GUI):
@@ -43,46 +45,20 @@ class AccountCreation(GUI):
         # Combine label and entry creation to minimize redundancy
         self.entry_fullname = tk.Entry(self.frame_fullname)
         label_fullname = tk.Label(self.frame_fullname, text="Full Name", width=20)
+
         label_fullname.grid(row=0, column=0)
         self.entry_fullname.grid(row=0, column=1)
 
         self.entry_password = tk.Entry(self.frame_password, show="*")
-        label_password =  tk.Label(self.form_frame, text="Password:", width=20, anchor="e").grid(row=1, column=0, padx=5, pady=5)
-        label_password.grid(row=0, column=0)
+
+        label_password = (
+            tk.Label(self.frame_password, text="Password:", width=20, anchor="e").grid(row=1, column=0, padx=5, pady=5))
+
         self.entry_password.grid(row=1, column=1, padx=5, pady=5, sticky="ew")
-
-
-
-        # Label for Password
-
-        self.entry_password = tk.Entry(self.form_frame, show="*")
-        self.entry_password.grid(row=1, column=1, padx=5, pady=5, sticky="ew")
-
-
-
-    def on_submit(self):
-        # Retrieve values from the entries
-        fullname = self.entry_fullname.get()
-        password = self.entry_password.get()
-
-        customer = Customer()
-
-        # Assuming a method to generate a unique ID for the new user
-        user_id = customer.generate_unique_id()
-
-        new_user = {
-            "fullname": fullname,
-            "password": password,
-            "id": user_id,
-            "balance": 0  # Setting balance to zero as requested
-        }
-
-        # Pyhon have garbage collector, however, it is a good practice to delete the object
-        del customer  # Delete the customer object
 
     def create_submit_button(self):
         '''
-        TODO this button should submit the data to the json file
+        TODO this button should submit the data_manager to the json file
         '''
         # Button to create account
         # COME BACK TO THIS LATER TO ADD COMMAND
@@ -91,6 +67,23 @@ class AccountCreation(GUI):
                                   command=self.on_submit,
                                   width=20)
         submit_button.pack()
+
+    def on_submit(self):
+        # Retrieve values from the entries
+        fullname = self.entry_fullname.get()
+        password = self.entry_password.get()
+
+        # Check if the user has entered a name or password
+        if not fullname or not password:
+            messagebox.showerror("Error", "Please fill in all fields")
+            return
+
+        new_user = {
+            "fullname": fullname,
+            "password": password,
+            "id": 0,  # Setting id to zero, as default value
+            "balance": 0  # Setting balance to zero as default value
+        }
 
 
 account_creation = AccountCreation()

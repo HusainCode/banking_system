@@ -35,7 +35,7 @@ class TestChecking(unittest.TestCase):
     #  CONTINUE FROM HERE
     # COME BACK TO THIS LATER
     def test_withdraw_insufficient_funds(self):
-        # Set up initial user data and balance
+        # Set up initial user data_manager and balance
         user_id = 'test_user'
         initial_balance = 100.00
         overdraft_fee = 25.00  # Example fee amount
@@ -47,7 +47,7 @@ class TestChecking(unittest.TestCase):
         # Perform withdrawal operation
         self.withdraw(user_id, withdraw_amount)
 
-        # Retrieve updated user data after withdrawal
+        # Retrieve updated user data_manager after withdrawal
         updated_user = self.find_user_by_id(user_id)
         updated_balance = updated_user['balance']
 

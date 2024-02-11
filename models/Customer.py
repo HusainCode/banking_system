@@ -1,5 +1,12 @@
+#############################################################################
+
+                     # ABANDONED CLASS
+
+#############################################################################
+
+
 import random
-from banking_system.data.json_data_manager \
+from banking_system.data.ABANDONED.json_data_manager \
     import JsonDataManager
 
 

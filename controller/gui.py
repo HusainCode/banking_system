@@ -1,8 +1,6 @@
-import json
-import tkinter as tk
-from abc import ABC, abstractmethod
 
-from banking_system.models.account.Checking import Checking
+import tkinter as tk
+from abc import ABC
 
 """
 

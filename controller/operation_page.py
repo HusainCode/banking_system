@@ -1,89 +1,54 @@
-import json
-from abc import ABC
-from banking_system.data.json_data_manager import JsonDataManager
-
 from banking_system.controller.gui import GUI
 import tkinter as tk
 
+from banking_system.data_manager.user_manager import UserManager
 
-class Operation(GUI, ABC):
+
+class Operation(GUI):
     def __init__(self):
         super().__init__()
         self.setup_window()
-        self.data_manager = JsonDataManager()
-        # self.display_customer_name()
-
+        self.data_manager = UserManager()
         self.main_window.title("Operation")
 
-    def create_frames(self):
-        self.frame_fullname = tk.Frame(self.main_window)
-        self.frame_fullname.pack(padx=5, pady=2)
 
-    def withdrawal(self):
-        pass
+#   I STOPPED HERE
+    def labels_source(self):
+        # Customer Name at the top
+        self.customer_name_label = tk.Label(self.main_window, text="Customer Name")
+        self.customer_name_label.grid(row=0, column=0, padx=5, pady=(5, 5), sticky="w")
 
-    def deposit(self, fullname, amount):
-        # Find the user
-        user, data = self.find_user(fullname)
+        # Customer ID right below Customer Name
+        self.customer_id_label = tk.Label(self.main_window, text="Customer ID")
+        self.customer_id_label.grid(row=1, column=0, padx=5, pady=(5, 5), sticky="w")
 
-        if user:
-            # Update the user's deposit amount
-            user['deposit'] += amount
+        # Current Balance at the bottom of the GUI
+        self.current_balance_label = tk.Label(self.main_window, text="Current Balance")
+        self.current_balance_label.grid(row=2, column=0, padx=5, pady=(5, 5), sticky="w")
 
-            # Write the updated data back to the JSON file
-            with open('banking_system/data/fake_users.json', 'w') as file:
-                json.dump(data, file, indent=4)
-
-
-    def display_customer_number(self):
-        pass
-
-    def display_current_balance(self):
-        pass
-
-    def create_labels(self):
-        # Call the read_json_file method and pass the path to the JSON file
-        data = self.data_manager.read_json_file()
-
-        # COME TO THIS LATER
-        # Extract the fullname of the first user
-        fullname = data['users'][0]['fullname']
-        customer_id = data['users'][0]['id']
-
-        # Create a label and set its text to the fullname
-        label_fullname = tk.Label(self.frame_fullname, text=fullname)
-        label_customer_id = tk.Label(self.frame_fullname, text=customer_id)
-
-        # Grid the label to display it on the GUI
-        label_fullname.grid(row=0, column=0, padx=5, pady=2, sticky='w')
-        label_customer_id.grid(row=1, column=0, padx=(40, 5), pady=2, sticky='w')
-
-    def display_customer_name(self):
-        pass
-
-
-
+        self.current_balance_value = tk.Label(self.main_window, text="$0.00")
+        self.current_balance_value.grid(row=2, column=1, padx=5, pady=(5, 5), sticky="ew")
 
     def create_entries(self):
-        pass
+        self.deposit_entry = tk.Entry(self.main_window)
+        self.deposit_entry.grid(row=2, column=1, padx=5, pady=5, sticky="ew")
+
+        self.withdrawal_entry = tk.Entry(self.main_window)
+        self.withdrawal_entry.grid(row=3, column=1, padx=5, pady=5, sticky="ew")
 
     def create_deposit_button(self):
-        # COME BACK TO THIS LATER TO ADD COMMAND
-        deposit_button = tk.Button(self.main_window,
-                                   text="Deposit",
-                                   width=8)
-
-        # despot_button.pack(padx=5, pady=5)
-        deposit_button.pack()
+        deposit_button = tk.Button(self.main_window, text="Deposit", width=8)
+        deposit_button.grid(row=2, column=0, padx=5, pady=5, sticky="ew")
 
     def create_withdrawal_button(self):
-        # COME BACK TO THIS LATER TO ADD COMMAND
-        withdrawal_button = tk.Button(self.main_window,
-                                   text="withdrawal",
-                                   width=8)
-
-        withdrawal_button.pack()
+        withdrawal_button = tk.Button(self.main_window, text="withdrawal", width=8)
+        withdrawal_button.grid(row=3, column=0, padx=5, pady=5, sticky="ew")
 
 
 app = Operation()
+app.labels_source()
+app.create_entries()
+app.create_deposit_button()
+app.create_withdrawal_button()
+
 app.main_window.mainloop()

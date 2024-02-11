@@ -4,7 +4,7 @@ from tkinter import messagebox
 from banking_system.controller.account_creation_page import AccountCreation
 from banking_system.controller.gui import GUI
 from banking_system.controller.operation_page import Operation
-from banking_system.data.json_data_manager import JsonDataManager
+from banking_system.data_manager.user_manager import UserManager
 
 """
 REFACTOR BEFORE FINALIZING 
@@ -16,8 +16,8 @@ class LoginRegistrar(GUI):
         super().__init__()
         self.setup_window()  # Call the setup_window method from GUI
         self.LoginRegistrar_ui_elements()
+        self.data_manager = UserManager()
 
-        self.data_manger = JsonDataManager()
         self.main_window.title("Login/Register")
 
         """
@@ -29,7 +29,6 @@ class LoginRegistrar(GUI):
         'n': Aligns the widget to the top side of the cell (north).
         's': Aligns the widget to the bottom side of the cell (south).
         """
-
 
 
     def LoginRegistrar_ui_elements(self):
@@ -91,15 +90,13 @@ class LoginRegistrar(GUI):
                                       command=self.on_login,
                                       width=30)
 
-        # Pack the login button at the bottom
-        self.login_button.pack(side='bottom', padx=5, pady=5)
 
     def on_login(self):
         # Retrieve values from the entries
         fullname = self.entry_fullname.get()
         password = self.entry_password.get()
 
-        user = self.data_manger.find_user_by_fullname(fullname, password)
+        user = self.data_manager.generate_unique_id()
 
         if user:
             self.navigate_to_operation()
@@ -113,8 +110,6 @@ class LoginRegistrar(GUI):
                                          command=self.navigate_to_account_creation,
                                          width=30)
 
-        # Pack the register button at the bottom
-        self.register_button.pack(side='bottom', padx=5, pady=5)
 
     # I stopped here
     def navigate_to_account_creation(self):
