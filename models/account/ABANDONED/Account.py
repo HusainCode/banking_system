@@ -1,3 +1,9 @@
+#############################################################################
+
+                     # ABANDONED CLASS
+
+#############################################################################
+
 from abc import ABC, abstractmethod
 from typing import Optional, Union
 import random
@@ -6,19 +12,19 @@ import random
 # from models.account.Savings import Savings
 
 
-class Account(ABC):
-    def __init__(self,account_type,amount: float = 0, balance: float = 0) -> None:
-        self._balance = balance
-        self.account_type = account_type
-        self.amount = amount
-
-        @abstractmethod
-        def deposit(amount: float) -> None:
-            pass
-
-        @abstractmethod
-        def withdraw(amount: float) -> None:
-            pass
+# class Account(ABC):
+#     def __init__(self,account_type,amount: float = 0, balance: float = 0) -> None:
+#         self._balance = balance
+#         self.account_type = account_type
+#         self.amount = amount
+#
+#         @abstractmethod
+#         def deposit(amount: float) -> None:
+#             pass
+#
+#         @abstractmethod
+#         def withdraw(amount: float) -> None:
+#             pass
 
 
 
