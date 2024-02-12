@@ -1,12 +1,14 @@
 import random
 
+from banking_system.controller.operation_page import Operation
+
 
 class UserManager:
     ID_RANGE_START = 1000000  # Start of 7-digit numbers
     ID_RANGE_END = 9999999  # End of 7-digit numbers
 
     def __init__(self):
-        pass
+        self.operation = Operation()
 
     # Come back to this later,see if you can make it more efficient
     def generate_unique_id(self):
@@ -50,6 +52,17 @@ class UserManager:
             if user['id'] == user_id:
                 return user
         return None
+
+    def update_labels_with_user_data(self, user_id):
+        user_data = self.find_user_by_id(user_id)
+        if user_data:
+            # Dynamically update labels with the user's data
+            self.operation.customer_name_label.config(text=f"Customer Name: {user_data['fullname']}")
+            self.operation.customer_id_label.config(text=f"Customer ID: {user_data['id']}")
+            self.operation.current_balance_label.config(text="Current Balance")
+            self.operation.current_balance_value.config(text=f"${user_data['balance']}")
+        else:
+            print("User not found")
 
     def display_customer_name(self, user_id):
         user = self.find_user_by_id(user_id)

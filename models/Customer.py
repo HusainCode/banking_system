@@ -6,8 +6,6 @@
 
 
 import random
-from banking_system.data.ABANDONED.json_data_manager \
-    import JsonDataManager
 
 
 class Customer:
@@ -21,7 +19,6 @@ class Customer:
     def __init__(self, customer_fullname: str = None, customer_id: int = None):
         self.customer_fullname = customer_fullname
         self.customer_id = customer_id
-        self.data_manager = JsonDataManager()
         self.new_id = self.generate_unique_id()
 
     # Come back to this later,see if you can make it more efficient

@@ -11,23 +11,28 @@ class Operation(GUI):
         self.data_manager = UserManager()
         self.main_window.title("Operation")
 
-
-#   I STOPPED HERE
     def labels_source(self):
-        # Customer Name at the top
-        self.customer_name_label = tk.Label(self.main_window, text="Customer Name")
-        self.customer_name_label.grid(row=0, column=0, padx=5, pady=(5, 5), sticky="w")
 
-        # Customer ID right below Customer Name
-        self.customer_id_label = tk.Label(self.main_window, text="Customer ID")
-        self.customer_id_label.grid(row=1, column=0, padx=5, pady=(5, 5), sticky="w")
+        self.data_manager.update_labels_with_user_data("7362516")
 
-        # Current Balance at the bottom of the GUI
-        self.current_balance_label = tk.Label(self.main_window, text="Current Balance")
-        self.current_balance_label.grid(row=2, column=0, padx=5, pady=(5, 5), sticky="w")
+        # Initialize labels
+        self.customer_name_label = tk.Label(self.main_window, text="")
+        self.customer_name_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
 
-        self.current_balance_value = tk.Label(self.main_window, text="$0.00")
-        self.current_balance_value.grid(row=2, column=1, padx=5, pady=(5, 5), sticky="ew")
+        self.customer_id_label = tk.Label(self.main_window, text="")
+        self.customer_id_label.grid(row=1, column=0, padx=5, pady=5, sticky="w")
+
+        self.current_balance_label = tk.Label(self.main_window, text="")
+        self.current_balance_label.grid(row=2, column=0, padx=5, pady=5, sticky="w")
+
+        self.current_balance_value = tk.Label(self.main_window, text="")
+        self.current_balance_value.grid(row=2, column=1, padx=5, pady=5, sticky="ew")
+
+
+
+
+
+
 
     def create_entries(self):
         self.deposit_entry = tk.Entry(self.main_window)
