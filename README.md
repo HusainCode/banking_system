@@ -1,3 +1,1 @@
-# banking_system
-
-# Postponed indefinitely
+![Project Status](https://img.shields.io/badge/status-postponed-red)
